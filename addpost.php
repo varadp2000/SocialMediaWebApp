@@ -1,4 +1,5 @@
 <?php
+require_once 'session.php';
 require_once 'config.php';
 include_once 'include/header.php';
 include_once 'showpost.php';

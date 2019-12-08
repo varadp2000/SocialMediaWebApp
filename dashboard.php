@@ -1,12 +1,12 @@
 <?php
+require_once'session.php';
 require_once 'config.php';
 include_once 'include/header.php'
 ?>
 
 <?php 
-session_start();
     if(!isset($_SESSION['user'])){
-        header("Location: login.php");
+        echo '<script>window.location.replace("login.php");</script>';
     }
 
     echo $_SESSION['user'].'<br>';

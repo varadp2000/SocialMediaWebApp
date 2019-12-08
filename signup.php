@@ -1,10 +1,11 @@
 <?php
+require_once 'session.php';
 require_once 'config.php';
 include_once 'include/header.php';
 
-session_start();
+
 if(isset($_SESSION['user'])){
-    header('location:dashboard.php');
+    echo '<script>window.location.replace("dashboard.php");</script>';
 }
 ?>
 <html>
@@ -34,6 +35,8 @@ if(isset($_SESSION['user'])){
     </body>
 </html>
 <?php
+
+
 if(isset($_POST['Submit'])){
     $fname=$_POST['fname'];
     $lname=$_POST['lname'];
@@ -47,7 +50,7 @@ if(isset($_POST['Submit'])){
         $result= $stmtinsert->execute([$fname,$lname,$cno,$email,$pass]);
 
     if($result){
-        header('Location:login.php');
+        echo '<script>window.location.replace("login.php");</script>';
     }
     else{
         echo 'Error Saving';

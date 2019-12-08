@@ -1,11 +1,13 @@
 <?php
+require_once 'session.php';
 require_once 'config.php';
-include_once 'include/header.php'
+include_once 'include/header.php';
+echo ' <meta name="viewport" content="width=device-width, initial-scale=1.0">';
 ?>
 
 
 <?php
-session_start();
+
 if(isset($_SESSION['user'])){
     $sql= "SELECT * FROM info WHERE email= ? LIMIT 1";
     $stmtselect= $db->prepare($sql);

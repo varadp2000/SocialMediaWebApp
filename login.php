@@ -1,12 +1,11 @@
 <?php
+include_once 'session.php';
+
+if(isset($_SESSION['user'])){
+    echo '<script>window.location.replace("dashboard.php")</script>';
+}
 require_once 'config.php';
 include_once 'include/header.php';
-
-
-session_start();
-if(isset($_SESSION['user'])){
-    header('location:dashboard.php');
-}
 ?>
 
 <html>
@@ -39,10 +38,9 @@ if(isset($_POST['log'])  ){
     $result= $stmtselect->execute([$email,$pass]);
 
     if($stmtselect->rowCount()>0){
-        header("Location: dashboard.php");
-        session_start();
         $_SESSION['user']=$email;
         echo 'Successful';
+        echo '<script>window.location.replace("dashboard.php");</script>';
 
         
     }

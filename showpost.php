@@ -1,4 +1,5 @@
 <?php
+include_once 'session.php';
 require_once 'config.php';
 include_once 'include/header.php'
 ?>
@@ -6,7 +7,6 @@ include_once 'include/header.php'
 
 <?php
 
-session_start();
 if(isset($_SESSION['user'])){
     $sql= "SELECT * FROM posts";
     $stmtselect= $db->prepare($sql);
@@ -31,5 +31,5 @@ if(!$stmtselect->rowCount()>0){
 
 }
 else{
-    header('location:index.php');
+    echo '<script>window.location.replace("index.php");</script>Failed';
 }

@@ -1,6 +1,7 @@
 <?php
+require_once 'session.php';
 require_once 'config.php';
-include_once 'include/header.php'
+include_once 'include/header.php';
 ?>
 
 <?php
@@ -11,16 +12,14 @@ if(isset($_GET['id'])){
     $stmtlikes= $db->prepare($sql);
         $stmtlikes->execute([$id]);
         while ($r = $stmtlikes->fetch()){
-            echo $r['likes'];
             $likes=$r['likes'];
         }
     $likes++;
-    echo '<br>'.$likes;
     $sql="UPDATE posts SET likes=? WHERE ID=?";
     $insert=$db->prepare($sql);
     $result=$insert->execute([$likes,$id]);
     if($result){
-        header('Location:addpost.php');
+        echo '<script>window.location.replace("addpost.php");</script>';
         echo 'Likes Updated Successfully';
     }
 
