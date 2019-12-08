@@ -13,8 +13,9 @@ include_once 'include/header.php';
         <title>Login</title>
     </head>
     <body>
+        <br><br><br>
         <form action="login.php" method="POST">
-            <div class="container" style="width:40rem">
+            <div class="container">
                 <div class="alert alert-dark"><h3>Enter Your Info</h3>
                     <div class="form-group">
                         <input type="email" class="form-control" name="email" placeholder="Email" required><br>
@@ -50,6 +51,12 @@ if(isset($_POST['log'])  ){
 }
 
 
+?>
+
+
+<?php
+
+include_once 'include/footer.php';
 ?>
 
 

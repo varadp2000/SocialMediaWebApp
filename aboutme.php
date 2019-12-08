@@ -16,10 +16,10 @@ if(isset($_SESSION['user'])){
 
     while ($r = $stmtselect->fetch()) {
         echo '<br><br><div class="container">';
-        echo '<div class="card" style="width:50rem;">';
+        echo '<div class="card">';
         echo '<div class="card-body" >';
         echo '<h1 class="card-title">'.$r['fname'].'   '.$r['lname'].'</h5>';
-        echo '<p class="card-text">Email:'.$r['email'].'<br>Contact No:'.$r['pno'].'</p><br></div>';
+        echo '<p class="card-text">Email:'.$r['email'].'<br>Contact No:'.$r['pno'].'</p><br></div></div></div>';
     }
     
 
@@ -34,4 +34,10 @@ else{
 }
 
 
+?>
+
+
+<?php
+
+include_once 'include/footer.php';
 ?>
