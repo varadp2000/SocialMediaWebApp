@@ -1,3 +1,26 @@
+<?php
+require_once 'config.php';
+include_once 'include/header.php';
+
+
+
+
+?>
+
+<?php
+session_start();
+if(isset($_SESSION['user'])){
+    header('location:dashboard.php');
+}
+
+if(isset($_GET['logout'])){
+    session_destroy();
+    unset($_SESSION);
+    header('location: index.php');
+}
+
+?>
+
 <html>
     <head>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
@@ -8,11 +31,13 @@
         <title>Welcome</title>
     </head>
     <body>
-
-        <div class="container" style="align:bottom;">
+        <br><br>
+        <div align="center">
+        <div class="alert-dark" style="width:50rem" align="center">
             <button class="btn btn-dark" type="button"><a class="btn btn-dark" href="Signup.php">Sign Up</a></button>
             <button class="btn btn-dark" type="button"><a class="btn btn-dark" href="Login.php">Login</a></Button>
         </div>
+</div>
 
     </body>
 </html>

@@ -1,5 +1,11 @@
 <?php
 require_once 'config.php';
+include_once 'include/header.php';
+
+session_start();
+if(isset($_SESSION['user'])){
+    header('location:dashboard.php');
+}
 ?>
 <html>
     <head>
@@ -14,7 +20,7 @@ require_once 'config.php';
         <div class="container">
         <div class="form group" style="width:40rem">
         <div class="alert alert-dark">
-            <form>
+            <form action="signup.php" method="POST">
                 <input class="form-control" type="text" id="fname" placeholder="First Name" name="fname" required><br>
                 <input class="form-control" type="text" id="lname" placeholder="Last Name" name="lname" required><br>
                 <input class="form-control" type="number" id="cno" placeholder="Contact No" name="cno" required><br>
@@ -27,47 +33,27 @@ require_once 'config.php';
 </div>
     </body>
 </html>
+<?php
+if(isset($_POST['Submit'])){
+    $fname=$_POST['fname'];
+    $lname=$_POST['lname'];
+    $cno=$_POST['cno'];
+    $email=$_POST['email'];
+    $pass=md5($_POST['pass']);
+    
+    
+        $sql= "INSERT INTO info (fname,lname,pno,email,pass) VALUES(?,?,?,?,?)";
+        $stmtinsert= $db->prepare($sql);
+        $result= $stmtinsert->execute([$fname,$lname,$cno,$email,$pass]);
 
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="http://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
-<script type="text/javascript">
-    $(function(){
-        $('#register').click(function(e){
-            var valid=this.form.checkValidity();
-            if(valid){
+    if($result){
+        header('Location:login.php');
+    }
+    else{
+        echo 'Error Saving';
+    }
 
-                var fname=$('#fname').val();
-                var lname=$('#lname').val();
-                var cno=$('#cno').val();
-                var email=$('#email').val();
-                var pass=$('#pass').val();
+    
+}
 
-                    e.preventDefault();
-                    $.ajax({
-                        type:'POST',
-                        url:'register.php',
-                        data:{fname:fname , lname:lname , cno:cno, email:email, pass:pass},
-                        success:function(data){
-                            Swal.fire({
-                                'title':'Welcome',
-                                'text':'You have successfully registered!',
-                                'type':'success'
-                            });
-                            if($.trim(data)==="Data Saved"){
-                                setTimeout('window.location.href= "login.php"',2000)
-                            }
-
-                        }
-                    });
-            }
-                else{
-                    Swal.fire({
-                                'title':'Error',
-                                'text':'Enter proper Info!!',
-                                'type':'error'
-                            });                    
-                }
-        });
-        
-    });
-</script>
+?>
