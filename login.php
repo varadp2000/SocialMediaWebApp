@@ -20,7 +20,7 @@ include_once 'include/header.php';
                     <div class="form-group">
                         <input type="email" class="form-control" name="email" placeholder="Email" required><br>
                         <input type="Password" name="pass" class='form-control' placeholder="Password" requierd><br>
-                        <input type="submit" class="btn btn-dark" name="log" value="Login">
+                        <input type="submit" class="btn btn-dark" name="log" value="Login">&nbsp;&nbsp;<a href="forgot.php">Forgot password?</a>
                     </div>
                 </div>
             </div>
@@ -55,7 +55,7 @@ if(isset($_POST['log'])  ){
 
 
 <?php
-
+echo '<br><br><Br><br><br><br><br>';
 include_once 'include/footer.php';
 ?>
 

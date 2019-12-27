@@ -3,6 +3,7 @@ require_once 'session.php';
 require_once 'config.php';
 include_once 'include/header.php';
 echo ' <meta name="viewport" content="width=device-width, initial-scale=1.0">';
+echo '<body style="background-image: linear-gradient(to right, red,blue);">';
 ?>
 
 
@@ -16,9 +17,9 @@ if(isset($_SESSION['user'])){
 
     while ($r = $stmtselect->fetch()) {
         echo '<br><br><div class="container">';
-        echo '<div class="card">';
+        echo '<div class="card" style="background-color:rgba(0,0,0,0.0);color:#FFFFFF">';
         echo '<div class="card-body" >';
-        echo '<h1 class="card-title">'.$r['fname'].'   '.$r['lname'].'</h5>';
+        echo '<h1 class="card-title" style="">'.$r['fname'].'   '.$r['lname'].'</h5>';
         echo '<p class="card-text">Email:'.$r['email'].'<br>Contact No:'.$r['pno'].'</p><br></div></div></div>';
     }
     
@@ -38,6 +39,6 @@ else{
 
 
 <?php
-
+echo '</body>';
 include_once 'include/footer.php';
 ?>
